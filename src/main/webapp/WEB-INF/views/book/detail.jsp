@@ -39,6 +39,11 @@
             window.location.href="/board/boardDelete.pj2?b_no=<%=rmap.get("B_NO")%>";
         }
     </script>--%>
+    <script>
+        const oneRental = () => {
+            document.querySelector("#one-order-rental").submit();
+        }
+    </script>
     <title>책 상세조회</title>
 </head>
 <body>
@@ -99,7 +104,6 @@
                 <!-- 리뷰 섹션 -->
                 <h4>리뷰</h4>
                 <label for="rating"></label>
-                <link href="/assets/css/star.css" rel="stylesheet"/>
 
                 <form class="mb-3" name="myform" id="myform" method="post">
                     <fieldset>
@@ -146,9 +150,7 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
     function toggleHeart(element) {
         let isLiked;
@@ -181,27 +183,9 @@
             // 취소를 누르면 false를 반환하여 페이지 이동을 중지
             return isConfirmed;
         }
-
-    document.getElementById('fetchButton').addEventListener('click', function() {
-        const m_id = <%=user%>; // 실제 사용자 ID로 대체해야 합니다.
-        const ep_id = document.getElementById('epId'); // 실제 에피소드 ID로 대체해야 합니다.
-        const b_no = <%=rmap.get("b_no")%>; // 실제 책 번호로 대체해야 합니다.
-
-        fetch('/order/insertFromDetail', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: `m_id=${m_id}&ep_id=${ep_id}&b_no=${b_no}`
-        })
-            .then(response => response.json())
-            .then(data => {
-                // 요청이 성공적으로 처리되었는지 확인하고 필요한 작업을 수행합니다.
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    });
 </script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

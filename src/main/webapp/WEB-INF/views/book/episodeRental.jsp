@@ -44,16 +44,20 @@
                 </div>
             </th>
             <td>
+                <form id="one-order-rental" method="post" action="/order/insertFromDetail">
                 <div class="table-info">
-                    <input type="hidden" id="epId" name="epId" value="<%=epMap.get("ep_id")%>">
+                    <input type="hidden" name="m_id" value="<%=user%>">
+                    <input type="hidden" name="ep_id" value="<%=epMap.get("ep_id")%>">
+                    <input type="hidden" name="b_no" value="<%=rmap.get("b_no")%>">
                     <p><%=rmap.get("b_title")%> <%=epMap.get("ep_no")%>화</p>
                     <p style="color: gray; font-size: 14px;"><%=epMap.get("ep_cdate")%></p>
                     <p style="color: #2679ff;"><%=epMap.get("ep_rprice")%>원</p>
                 </div>
+                </form>
             </td>
             <td>
                 <div class="episode-button">
-                    <button id="fetchButton" class="white-button" type="button">대여</button>
+                    <button class="white-button" onclick="oneRental()">대여</button>
                 </div>
             </td>
         </tr>

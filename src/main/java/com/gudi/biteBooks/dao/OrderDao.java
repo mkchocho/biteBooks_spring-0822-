@@ -36,4 +36,10 @@ public class OrderDao {
         result=sqlSessionTemplate.insert("insertFromDetail", pMap);
         return result;
     }
+
+    public int orderDelete(Map<String, Object> pMap) {
+        int result =0;
+        result=sqlSessionTemplate.insert("orderDelete", pMap);
+        return result;
+    }
 }

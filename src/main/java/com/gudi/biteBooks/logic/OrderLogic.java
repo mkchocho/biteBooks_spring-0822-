@@ -43,4 +43,10 @@ public class OrderLogic {
         result = orderDao.insertFromDetail(pMap);
         return result;
     }
+
+    public int orderDelete(Map<String, Object> pMap) {
+        int result=0;
+        result = orderDao.orderDelete(pMap);
+        return result;
+    }
 }

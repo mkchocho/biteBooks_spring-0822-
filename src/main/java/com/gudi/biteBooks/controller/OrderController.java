@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import com.gudi.biteBooks.logic.OrderLogic;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Controller
@@ -46,7 +47,13 @@ public class OrderController {
     }
 
     @GetMapping("orderList")
-    public String orderList(@RequestParam Map<String, Object> pMap, Model model){
+    public String orderList(@RequestParam Map<String, Object> pMap, Model model, HttpSession session){
+        String userId = null;
+        if(session.getAttribute("m_id") != null) {
+            userId = (String)session.getAttribute("m_id");
+            // pMap에 user id 추가
+            pMap.put("m_id", userId);
+        }
         List<Map<String,Object>> oList = null;
         oList = orderLogic.orderList(pMap);
         model.addAttribute("oList", oList);
@@ -55,10 +62,13 @@ public class OrderController {
 
     @PostMapping("orderDelete")
     public void orderDelete(@RequestBody Map<String, Object> pMap, Model model){
-        String str = (String)pMap.get("m_id");
-        System.out.println(str);
-        int m_id = Integer.parseInt(str);
-        System.out.println("m_id int형변환" + m_id);
+        int result = 0;
+        result = orderLogic.orderDelete(pMap);
+//
+//        String str = (String)pMap.get("m_id");
+//        System.out.println(str);
+//        int m_id = Integer.parseInt(str);
+//        System.out.println("m_id int형변환" + m_id);
 
 
     }
