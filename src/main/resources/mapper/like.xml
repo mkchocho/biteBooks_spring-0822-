@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gudi.biteBooks.likeMapper">
+	<insert id="likeInsert" parameterType="java.util.HashMap" >
+		INSERT INTO likes(m_id, b_no) VALUES (#{m_id}, #{b_no})
+	</insert>
+	<delete id="likeDelete" parameterType="java.util.HashMap" >
+		DELETE FROM likes WHERE m_id = #{m_id} AND b_no = #{b_no}
+	</delete>
+	<select id="likeSelect" parameterType="java.util.HashMap" resultType="map">
+		SELECT l.l_no, l.b_no, b.b_title
+		FROM LIKES l
+		JOIN BOOK b ON l.B_NO = b.B_NO
+		WHERE
+		<choose>
+			<when test="m_id != null">
+				m_id = #{m_id}
+				<if test="b_no != null">
+					AND l.b_no = #{b_no}
+				</if>
+			</when>
+		</choose>
+
+	</select>
+</mapper>

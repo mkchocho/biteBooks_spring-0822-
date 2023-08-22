@@ -1,0 +1,59 @@
+@charset "UTF-8";
+.mypage-container {
+    display: flex;
+    width: 700px;
+    border: 1px solid rgb(73, 73, 73);
+}
+.left-section {
+    background-color: #def6ff;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.user-info {
+    color: black;
+}
+.user-info h3 {
+    margin: 0;
+    font-size: 18px;
+}
+.user-info p {
+    margin: 0;
+    font-size: 12px;
+    color: rgb(73, 73, 73);
+}
+.user-email {
+    color: gray;
+    font-size: 10px;
+}
+.right-section {
+    padding: 40px;
+    flex: 2;
+    color: rgb(73, 73, 73);
+}
+.icons-container {
+    display: flex;
+    justify-content: space-between;
+}
+.icon-box {
+    text-align: center;
+}
+.icon {
+    margin-top: 25px;
+    font-size: 25px;
+}
+.title{
+    margin: 5px;
+    font-weight: 600;
+}
+.count {
+    margin-top: 0;
+    font-weight: 500;
+    color: #2679ff;
+}
+.link{
+    text-decoration: none;
+    color: inherit;
+}

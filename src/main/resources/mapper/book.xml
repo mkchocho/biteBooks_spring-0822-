@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gudi.biteBooks.bookMapper">
+	<select id="bookList" parameterType="java.util.HashMap" resultType="map">
+		SELECT b_no, b_title, b_author, b_publisher, b_date, b_thumbnail, b_descript, b_genre, b_type
+		FROM book
+		WHERE
+		<choose>
+			<when test="page == 'novel'">
+				b_type = '소설'
+				<if test="b_genre != null">
+					AND b_genre = #{b_genre}
+				</if>
+			</when>
+			<when test="b_genre != null">
+				b_type = '만화' AND b_genre = #{b_genre}
+			</when>
+			<when test="b_no != null">
+				b_no = #{b_no}
+			</when>
+			<otherwise>
+				b_type = '만화'
+			</otherwise>
+		</choose>
+	</select>
+	<select id="bookListDate" parameterType="java.util.HashMap" resultType="map">
+		SELECT b_no, b_title, b_author, b_publisher, b_date, b_thumbnail, b_descript, b_genre, b_type
+		FROM book
+		WHERE
+		<choose>
+			<when test="page == 'novel'">
+				b_type = '소설'
+				<if test="b_genre != null">
+					AND b_genre = #{b_genre}
+				</if>
+			</when>
+			<when test="b_genre != null">
+				b_type = '만화' AND b_genre = #{b_genre}
+			</when>
+			<otherwise>
+				b_type = '만화'
+			</otherwise>
+		</choose>
+		ORDER BY b_date DESC
+	</select>
+
+	<select id="epList" parameterType="java.util.HashMap" resultType="map">
+		SELECT ep_id, DATE_FORMAT(ep_cdate, '%Y.%m.%d') as ep_cdate, ep_rprice, ep_cprice, ep_no
+		FROM episode
+		WHERE
+				b_no = #{b_no}
+	</select>
+</mapper>
