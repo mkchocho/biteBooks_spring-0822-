@@ -45,7 +45,7 @@
             </th>
             <td>
                 <div class="table-info">
-                    <% epId = (int)epMap.get("ep_id"); %>
+                    <input type="hidden" id="epId" name="epId" value="<%=epMap.get("ep_id")%>">
                     <p><%=rmap.get("b_title")%> <%=epMap.get("ep_no")%>화</p>
                     <p style="color: gray; font-size: 14px;"><%=epMap.get("ep_cdate")%></p>
                     <p style="color: #2679ff;"><%=epMap.get("ep_rprice")%>원</p>

@@ -182,21 +182,25 @@
             return isConfirmed;
         }
 
-    // 버튼 요소를 DOM에서 선택
-    const fetchButton = document.getElementById('fetchButton');
-    // 버튼에 클릭 이벤트 리스너 등록
-    fetchButton.addEventListener('click', function() {
-        // 버튼 클릭 시 실행될 fetch API 코드
+    document.getElementById('fetchButton').addEventListener('click', function() {
+        const m_id = <%=user%>; // 실제 사용자 ID로 대체해야 합니다.
+        const ep_id = document.getElementById('epId'); // 실제 에피소드 ID로 대체해야 합니다.
+        const b_no = <%=rmap.get("b_no")%>; // 실제 책 번호로 대체해야 합니다.
+
         fetch('/order/insertFromDetail', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: 'm_id=<%=user%>&ep_id=<%=epId%>&b_no=<%=rmap.get("b_no")%>'
+            body: `m_id=${m_id}&ep_id=${ep_id}&b_no=${b_no}`
         })
             .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
+            .then(data => {
+                // 요청이 성공적으로 처리되었는지 확인하고 필요한 작업을 수행합니다.
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     });
 </script>
 </body>
